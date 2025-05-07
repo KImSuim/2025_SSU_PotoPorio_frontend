@@ -1,10 +1,8 @@
-// Loader.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import TitleAnimation from "./TitleAnimation";
 import YearAnimation from "./YearAnimation";
-import MainScreen from "./MainScreen";
 
 interface LoaderProps {
   onFinish: () => void;

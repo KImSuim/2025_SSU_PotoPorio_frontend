@@ -1,12 +1,9 @@
 "use client";
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import Video from "../Intro/video";
 import Skills from "../Intro/skills";
 
 export default function MainScreen() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <motion.div
       initial={{ y: "100%" }}

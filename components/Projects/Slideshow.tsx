@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
@@ -13,31 +13,31 @@ export const Slideshow = ({ images }: { images: Image[] }) => {
   const [direction, setDirection] = useState(1);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startAutoSlide = () => {
+  const startAutoSlide = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setDirection(1);
       setIndex((prev) => (prev + 1) % images.length);
     }, 3000);
-  };
+  }, [images.length]);
 
   useEffect(() => {
     startAutoSlide();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [images.length]);
+  }, [startAutoSlide]);
 
   const goToNext = () => {
     setDirection(1);
     setIndex((prev) => (prev + 1) % images.length);
-    startAutoSlide(); // 타이머 리셋
+    startAutoSlide();
   };
 
   const goToPrevious = () => {
     setDirection(-1);
     setIndex((prev) => (prev - 1 + images.length) % images.length);
-    startAutoSlide(); // 타이머 리셋
+    startAutoSlide();
   };
 
   if (images.length === 0) return null;
@@ -59,7 +59,6 @@ export const Slideshow = ({ images }: { images: Image[] }) => {
         </AnimatePresence>
       </div>
 
-      {/* 좌우 화살표 */}
       <button onClick={goToPrevious} className="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#FEC901]">
         <FaArrowAltCircleLeft />
       </button>

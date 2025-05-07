@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // 프레이머 모션 임포트
 import { Slideshow } from "./Slideshow";
 import { HiMiniXMark } from "react-icons/hi2";
+import Image from "next/image"; // next/image 임포트
 
 const projects = [
   {
@@ -101,7 +102,17 @@ export default function Projects() {
                 <h3 className="text-[28px] font-bold mb-2">{project.title}</h3>
                 <span className="text-sm bg-white/20 text-white py-1 px-2 rounded-full">{project.type}</span>
 
-                <img src={project.imageUrl} alt={project.title} className="w-full rounded-lg my-4" />
+                {/* next/image로 변경 */}
+                {project.imageUrl && (
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    width={500} // 이미지를 렌더링할 크기 지정
+                    height={300} // 이미지를 렌더링할 크기 지정
+                    className="w-full rounded-lg my-4"
+                    priority // 페이지 로딩 시 이미지 우선 로딩
+                  />
+                )}
 
                 <div className="flex overflow-x-auto gap-2 scrollbar-hide mb-4">
                   {project.tags.map((tag, i) => (

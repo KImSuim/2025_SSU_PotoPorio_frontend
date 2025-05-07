@@ -12,7 +12,7 @@ type Comment = {
   likes: number;
 };
 
-export default function CommentForm({ onSubmit }: { onSubmit?: (comment: any) => void }) {
+export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment) => void }) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [content, setContent] = useState("");
@@ -21,7 +21,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: any) =>
     e.preventDefault();
     if (!content.trim()) return;
 
-    const newComment = {
+    const newComment: Comment = {
       id: Date.now(),
       nickname,
       password,

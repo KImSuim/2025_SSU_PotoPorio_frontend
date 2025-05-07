@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 :root {
   --background: #ffffff;
@@ -22,7 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Abril Fatface", cursive;
+  font-family: "Pretendard", sans-serif;
 }
 
 /* globals.css */
@@ -32,4 +33,9 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+h1,
+.logo-title {
+  font-family: "Abril Fatface", serif;
 }

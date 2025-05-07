@@ -1,6 +1,13 @@
-// ❌ "use client" 제거
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
+import { Abril_Fatface } from "next/font/google";
+
+// Abril Fatface만 next/font로 최적화
+const abrilFatface = Abril_Fatface({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "SSU PotoPorio",
@@ -9,13 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-      </head>
+    <html lang="ko" className={abrilFatface.className}>
       <body>{children}</body>
     </html>
   );
