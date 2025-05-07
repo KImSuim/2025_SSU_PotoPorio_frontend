@@ -1,8 +1,6 @@
 // ❌ "use client" 제거
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "SSU PotoPorio",
@@ -18,11 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
       </head>
-      <body>
-        {/* <Header /> */}
-        {children}
-        {/* <Footer /> */}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
