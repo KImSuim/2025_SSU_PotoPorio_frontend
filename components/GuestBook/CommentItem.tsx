@@ -72,7 +72,11 @@ export default function CommentItem({ comment, onUpdate, onDelete }: any) {
           <span className="font-subtitle font-bold ">{comment.nickname}</span>
           <span className="font-subtitle font-light">{comment.createdAt}</span>
           {/* 하트 아이콘과 숫자 */}
-          <button onClick={handleLike} className={`flex items-center gap-1 ${liked ? "text-red-500 font-subtitle " : "text-gray-400 hover:text-red-300 font-subtitle "}`} aria-label="좋아요">
+          <button
+            onClick={handleLike}
+            className={`flex items-center gap-1 ${liked ? "text-red-500" : "text-gray-400 hover:text-red-500 hover:scale-110 transition"} font-subtitle`}
+            aria-label="좋아요"
+          >
             <FaHeart />
             <span className="font-bold text-black">{likes}</span>
           </button>

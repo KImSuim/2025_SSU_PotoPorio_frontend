@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 
-// type Comment = {
-//   id: number;
-//   nickname: string;
-//   password: string;
-//   content: string;
-//   createdAt: string;
-//   replies: Comment[];
-//   likes: number;
-// };
+type Comment = {
+  id: number;
+  nickname: string;
+  password: string;
+  content: string;
+  createdAt: string;
+  replies: Comment[];
+  likes: number;
+};
 
-export default function CommentForm({ onSubmit }: { onSubmit?: (comment: any) => void }) {
+export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment) => void }) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [content, setContent] = useState("");
