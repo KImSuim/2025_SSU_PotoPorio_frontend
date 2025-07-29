@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
-import type { Comment } from "../../types/comment";
+import type { Comment } from "../../types/Comment";
 
 const testComments: Comment[] = [
   {

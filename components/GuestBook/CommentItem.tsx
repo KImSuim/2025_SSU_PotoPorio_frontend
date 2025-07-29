@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import ReplyForm from "./ReplyForm";
 import PasswordModal from "./PasswordModal";
-import type { Comment } from "../../types/comment";
+import type { Comment } from "../../types/Comment";
 
 type CommentItemProps = {
   comment: Comment;

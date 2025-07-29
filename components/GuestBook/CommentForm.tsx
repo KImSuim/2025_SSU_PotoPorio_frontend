@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Comment } from "../../types/comment";
+import type { Comment } from "../../types/Comment";
 
 export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment) => void }) {
   const [nickname, setNickname] = useState("");

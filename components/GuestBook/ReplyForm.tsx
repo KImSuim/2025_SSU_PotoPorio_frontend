@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import type { Comment } from "../../types/comment";
+import type { Comment } from "../../types/Comment";
 
 type ReplyFormProps = {
   parent: Comment;

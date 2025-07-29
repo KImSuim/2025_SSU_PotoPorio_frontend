@@ -2,7 +2,7 @@
 import { useState } from "react";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
-import type { Comment } from "../../types/comment";
+import type { Comment } from "../../types/Comment";
 
 export default function CommentList({ comments, onUpdate, onDelete }: { comments: Comment[]; onUpdate?: (id: number, content: string) => void; onDelete?: (id: number) => void }) {
   const [visibleCount, setVisibleCount] = useState(5);
