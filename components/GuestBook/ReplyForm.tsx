@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 
+import type { Comment } from "../../types/comment";
+
 type ReplyFormProps = {
-  parent: { id: number; [key: string]: any };
+  parent: Comment;
   onFinish: () => void;
 };
 

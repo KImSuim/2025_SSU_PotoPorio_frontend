@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import ReplyForm from "./ReplyForm";
 import PasswordModal from "./PasswordModal";
+import type { Comment } from "../../types/comment";
+
+type CommentItemProps = {
+  comment: Comment;
+  onUpdate: (id: number, content: string) => void;
+  onDelete: (id: number) => void;
+};
 
 // 쿠키 읽기/쓰기 함수
 function getLikedComments() {
@@ -20,7 +27,7 @@ function setLikedComments(arr: number[]) {
   document.cookie = `likedComments=${encodeURIComponent(JSON.stringify(arr))}; path=/; max-age=31536000`;
 }
 
-export default function CommentItem({ comment, onUpdate, onDelete }: any) {
+export default function CommentItem({ comment, onUpdate, onDelete }: CommentItemProps) {
   const [showReply, setShowReply] = useState(false);
   const [showModal, setShowModal] = useState<null | "edit" | "delete">(null);
   const [editContent, setEditContent] = useState(comment.content);
