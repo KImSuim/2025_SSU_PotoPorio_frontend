@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 
-export default function ReplyForm({ parent, onFinish }: { parent: any; onFinish: () => void }) {
+type ReplyFormProps = {
+  parent: { id: number; [key: string]: any };
+  onFinish: () => void;
+};
+
+export default function ReplyForm({ parent, onFinish }: ReplyFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [content, setContent] = useState("");
