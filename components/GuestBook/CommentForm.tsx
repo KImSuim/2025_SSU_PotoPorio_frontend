@@ -29,7 +29,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-6xl mx-auto">
+    <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-6xl">
       <div className="font-subtitle flex items-start gap-4 mb-2">
         <input
           className="bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-1/2 text-xl font-bold text-black"

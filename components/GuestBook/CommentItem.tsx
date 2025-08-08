@@ -73,7 +73,7 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
   };
 
   return (
-    <div className="bg-[#FCF8F2] text-black p-10 rounded-2xl shadow mt-4 max-w-6xl mx-auto">
+    <div className="bg-[#fcf8f2e5] text-black p-10 rounded-2xl shadow mt-4 max-w-6xl mx-auto">
       <div className="flex justify-between mx-3 items-center">
         <div className="flex gap-10 items-center">
           <span className="font-subtitle font-bold ">{comment.nickname}</span>

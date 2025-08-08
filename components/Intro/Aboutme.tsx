@@ -6,8 +6,8 @@ export default function AboutMe() {
       <div className="text-[#FCF8F2] text-2xl z-20 relative px-[200px] pt-[80px] pb-[350px] bg-[#2E5D3A] flex flex-col gap-[20px]">
         <div className="max-w-9xl text-left mx-auto ">
           <div className="text-[80px]">About me</div>
-          <div className="font-pretendard text-[65px] font-bold mt-[10px]">"디자인과 사용자 경험을 연결하는 개발자"</div>
-          <div className="font-subtitle font-pretendard text-[38px] flex flex-col gap-6 mt-[30px]">
+          <div className="font-aboutme font-pretendard text-[65px] mt-[10px]">"디자인과 사용자 경험을 연결하는 개발자"</div>
+          <div className="font-aboutme font-pretendard text-[38px] flex flex-col gap-6 mt-[30px]">
             <div>
               안녕하세요 웹 프론트엔드 개발자를 꿈꾸는 김수임입니다. <br />
               컴퓨터공학 전공과 SEO·마케팅 경험을 바탕으로, 웹을 다양한 시각에서 바라보는 개발자입니다. 현재는 프론트엔드 분야에 집중하며 실력을 쌓아가고 있습니다.

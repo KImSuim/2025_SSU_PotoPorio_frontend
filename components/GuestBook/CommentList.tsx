@@ -17,7 +17,6 @@ export default function CommentList({ comments, onUpdate, onDelete }: { comments
           더보기 ▼
         </button>
       )}
-      <CommentForm />
     </div>
   );
 }
