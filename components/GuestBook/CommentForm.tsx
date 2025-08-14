@@ -29,7 +29,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-6xl">
+    <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-5xl w-full mx-auto">
       <div className="font-subtitle flex items-start gap-4 mb-2">
         <input
           className="bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-1/2 text-xl font-bold text-black"
@@ -48,7 +48,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
             if (/^\d{0,4}$/.test(val)) setPassword(val);
           }}
         />
-        <button type="submit" className="font-subtitle bg-[#ABD9B7] text-white px-6 py-3 rounded-lg font-bold ml-auto mt-1 text-xl " style={{ minWidth: 100 }}>
+        <button type="submit" className="font-subtitle bg-[#ABD9B7] text-white px-6 py-3 rounded-lg font-bold ml-auto mt-1 text-xl hover:bg-[#33974D]" style={{ minWidth: 100 }}>
           등록
         </button>
       </div>

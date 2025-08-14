@@ -75,9 +75,17 @@ export default function Projects() {
   // 모달 상태에 따라 body의 스크롤 방지
   useEffect(() => {
     if (showModal) {
-      document.body.style.overflow = "hidden"; // 모달이 열리면 스크롤을 막음
+      document.body.style.overflow = "hidden";
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setShowModal(false);
+      };
+      window.addEventListener("keydown", handleEsc);
+      return () => {
+        document.body.style.overflow = "auto";
+        window.removeEventListener("keydown", handleEsc);
+      };
     } else {
-      document.body.style.overflow = "auto"; // 모달이 닫히면 스크롤을 다시 활성화
+      document.body.style.overflow = "auto";
     }
   }, [showModal]);
 
@@ -101,7 +109,7 @@ export default function Projects() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-y-10  justify-items-center">
-            {filteredProjects.map((project) => (
+            {/* {filteredProjects.map((project) => (
               <div key={project.id} className="bg-[#102315] rounded-lg p-4 max-w-11/12">
                 <h3 className="text-[28px] font-bold mb-2">{project.title}</h3>
                 <span className="text-sm bg-white/20 text-white py-1 px-2 rounded-full">{project.type}</span>
@@ -126,6 +134,36 @@ export default function Projects() {
                   VIEW
                 </button>
               </div>
+            ))} */}
+            {filteredProjects.map((project) => (
+              <div key={project.id} className="bg-[#102315] rounded-lg p-4 max-w-11/12 relative group">
+                {/* VIEW 버튼을 카드 맨 위에 배치 */}
+
+                <h3 className="text-[28px] font-bold mb-2">{project.title}</h3>
+                <span className="text-sm bg-white/20 text-white py-1 px-2 rounded-full">{project.type}</span>
+                <img src={project.imageUrl} alt={project.title} className="w-3xl rounded-lg my-4" />
+                <div className="flex overflow-x-auto gap-2 scrollbar-hide mb-4">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="whitespace-nowrap bg-white/10 text-sm px-3 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setShowModal(true);
+                  }}
+                  className="w-full bg-[#3B3B1F] text-[#FEC901] font-bold py-2 rounded-lg mb-4 z-20 relative"
+                  // z-20, relative로 오버레이 위에 항상 보이게!
+                >
+                  VIEW
+                </button>
+                {/* 오버레이 info: 호버 시만 나타나고, VIEW 버튼은 항상 위에 보임 */}
+                <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 rounded-lg">
+                  <div className="text-[#FEC901] text-lg px-8 py-6 text-center font-subtitle break-words">{project.info}</div>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -137,7 +175,7 @@ export default function Projects() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              style={{ pointerEvents: "none" }}
+              // style={{ pointerEvents: "none" }}
             >
               <motion.div
                 className="bg-[#0D1B11] p-[30px] rounded-lg w-[100%] max-w-3xl text-[#FCF8F2] items-center flex flex-col gap-3"
@@ -146,7 +184,7 @@ export default function Projects() {
                 exit={{ scale: 0.8 }}
                 transition={{ duration: 0.3 }}
                 style={{
-                  pointerEvents: "auto",
+                  // pointerEvents: "auto",
                   boxShadow: "rgba(255, 255, 255, 0.5) 1px -1px 25px 0px",
                 }}
               >
