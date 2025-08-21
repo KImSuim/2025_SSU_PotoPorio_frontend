@@ -101,7 +101,9 @@ export default function Projects() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full font-semibold transition-colors duration-200 bg-white/30 ${activeCategory === category ? "text-[#FEC901]" : "text-[#16331F] hover:text-[#3C6C4F]"}`}
+                className={`px-6 py-2 rounded-full font-semibold transition-colors duration-200 text-lg bg-white/40 ${
+                  activeCategory === category ? "text-[#FEC901]" : "text-[#16331F] hover:text-[#3C6C4F]"
+                }`}
               >
                 {category}
               </button>
@@ -139,12 +141,12 @@ export default function Projects() {
               <div key={project.id} className="bg-[#102315] rounded-lg p-4 max-w-11/12 relative group">
                 {/* VIEW 버튼을 카드 맨 위에 배치 */}
 
-                <h3 className="text-[28px] font-bold mb-2">{project.title}</h3>
-                <span className="text-sm bg-white/20 text-white py-1 px-2 rounded-full">{project.type}</span>
+                <h3 className="text-[28px] font-bold mb-3">{project.title}</h3>
+                <span className="text-base bg-white/20 text-white py-1 px-4 rounded-full ">{project.type}</span>
                 <img src={project.imageUrl} alt={project.title} className="w-3xl rounded-lg my-4" />
                 <div className="flex overflow-x-auto gap-2 scrollbar-hide mb-4">
                   {project.tags.map((tag, i) => (
-                    <span key={i} className="whitespace-nowrap bg-white/10 text-sm px-3 py-1 rounded-full">
+                    <span key={i} className="whitespace-nowrap bg-white/10 text-base px-4 py-1 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -193,12 +195,12 @@ export default function Projects() {
                   <div></div>
                   <HiMiniXMark />
                 </button>
-                <h3 className="text-3xl font-bold ">{selectedProject.title}</h3>
-                <span className="text-sm bg-[#FCF8F2] text-[#0D1B11] py-1 px-7  mb-2 rounded-full">{selectedProject.type}</span>
+                <h3 className="text-4xl font-bold mb-2 ">{selectedProject.title}</h3>
+                <span className="text-lg bg-[#FCF8F2] text-[#0D1B11] py-1 px-7 mb-2 rounded-full">{selectedProject.type}</span>
 
                 {/* ✅ 슬라이드쇼 삽입 */}
                 {selectedProject.images && selectedProject.images.length > 0 && <Slideshow images={selectedProject.images} />}
-                <div className="font-subtitle w-2xl text-sm h-[100px] mt-3 overflow-hidden break-words">{selectedProject.info}</div>
+                <div className="font-subtitle w-2xl text-lg h-[100px] mt-3 overflow-hidden break-words">{selectedProject.info}</div>
 
                 <div className="flex gap-5">
                   <a

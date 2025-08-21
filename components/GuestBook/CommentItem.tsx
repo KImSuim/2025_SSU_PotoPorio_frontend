@@ -89,13 +89,22 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
           </button>
         </div>
         <div className="font-subtitle flex gap-2 text-white text-xl">
-          <button onClick={() => setShowModal("edit")} className="bg-[#B0DAF4] px-5 py-1 rounded-lg font-semibold hover:bg-[#6CB8E6]">
+          <button
+            onClick={() => setShowModal("edit")}
+            className="bg-[#B0DAF4] px-5 py-1 rounded-lg font-semibold hover:bg-[#6CB8E6] transition-colors duration-300"
+          >
             수정
           </button>
-          <button onClick={() => setShowModal("delete")} className="bg-[#FFA6A6] px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B]">
+          <button
+            onClick={() => setShowModal("delete")}
+            className="bg-[#FFA6A6] px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B] transition-colors duration-300"
+          >
             삭제
           </button>
-          <button onClick={() => setShowReply(!showReply)} className="bg-[#ABD9B7] px-5 py-1 rounded-lg font-semibold hover:bg-[#33974D]">
+          <button
+            onClick={() => setShowReply(!showReply)}
+            className="bg-[#ABD9B7] px-5 py-1 rounded-lg font-semibold hover:bg-[#33974D] transition-colors duration-300"
+          >
             댓글
           </button>
         </div>

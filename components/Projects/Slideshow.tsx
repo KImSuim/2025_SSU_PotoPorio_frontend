@@ -60,7 +60,7 @@ export const Slideshow = ({ images }: { images: Image[] }) => {
       </div>
 
       {/* 좌우 화살표 */}
-      <button onClick={goToPrevious} className="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#FEC901]">
+      <button onClick={goToPrevious} className="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#FEC901] ">
         <FaArrowAltCircleLeft />
       </button>
       <button onClick={goToNext} className="absolute right-6 top-1/2 transform -translate-y-1/2 text-[#FEC901]">
