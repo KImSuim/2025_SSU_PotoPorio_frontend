@@ -76,35 +76,26 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
     <div className="bg-[#fcf8f2e5] text-black p-10 rounded-2xl shadow mt-4 max-w-6xl mx-auto">
       <div className="flex justify-between mx-3 items-center">
         <div className="flex gap-10 items-center">
-          <span className="font-subtitle font-bold ">{comment.nickname}</span>
-          <span className="font-subtitle font-light">{comment.createdAt}</span>
+          <span className="font-subtitle font-bold text-xl ">{comment.nickname}</span>
+          <span className="font-subtitle font-light text-xl">{comment.createdAt}</span>
           {/* 하트 아이콘과 숫자 */}
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1 ${liked ? "text-red-500" : "text-gray-400 hover:text-red-500 hover:scale-110 transition"} font-subtitle`}
+            className={` flex items-center gap-1 ${liked ? "text-red-500" : "text-[#8A8A8A] hover:text-[#FFA6A6] transition-colors duration-300 "} font-subtitle`}
             aria-label="좋아요"
           >
             <FaHeart />
-            <span className="font-bold text-black">{likes}</span>
+            <span className="font-bold ">{likes}</span>
           </button>
         </div>
         <div className="font-subtitle flex gap-2 text-white text-xl">
-          <button
-            onClick={() => setShowModal("edit")}
-            className="bg-[#B0DAF4] px-5 py-1 rounded-lg font-semibold hover:bg-[#6CB8E6] transition-colors duration-300"
-          >
+          <button onClick={() => setShowModal("edit")} className="bg-[#B0DAF4] px-5 py-1 rounded-lg font-semibold hover:bg-[#56AFE6] transition-colors duration-300">
             수정
           </button>
-          <button
-            onClick={() => setShowModal("delete")}
-            className="bg-[#FFA6A6] px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B] transition-colors duration-300"
-          >
+          <button onClick={() => setShowModal("delete")} className="bg-[#FFA6A6] px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B] transition-colors duration-300">
             삭제
           </button>
-          <button
-            onClick={() => setShowReply(!showReply)}
-            className="bg-[#ABD9B7] px-5 py-1 rounded-lg font-semibold hover:bg-[#33974D] transition-colors duration-300"
-          >
+          <button onClick={() => setShowReply(!showReply)} className="bg-[#ABD9B7] px-5 py-1 rounded-lg font-semibold hover:bg-[#33974D] transition-colors duration-300">
             댓글
           </button>
         </div>
@@ -112,7 +103,7 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
 
       <hr className="my-4 border-1 border-black" />
 
-      <div className="font-subtitle  mx-3 font-light">{comment.content}</div>
+      <div className="font-subtitle mx-3 font-light text-xl">{comment.content}</div>
 
       {showReply && (
         <ReplyForm

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import CommentItem from "./CommentItem";
 import type { Comment } from "../../types/Comment";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 type CommentListProps = {
   comments: Comment[];
@@ -22,15 +23,15 @@ export default function CommentList({ comments, onUpdate, onDelete }: CommentLis
       ))}
       {comments.length > 5 && visibleCount < comments.length && (
         <div className="flex justify-center mt-6">
-          <button className="font-subtitle text-white mt-4" onClick={handleShowMore}>
-            더보기 ▼
+          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold" onClick={handleShowMore}>
+            더보기 <FiChevronDown size={30} />
           </button>
         </div>
       )}
       {comments.length > 5 && visibleCount >= comments.length && (
         <div className="flex justify-center mt-6">
-          <button className="font-subtitle text-white mt-4" onClick={handleHide}>
-            숨기기 ▲
+          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold" onClick={handleHide}>
+            숨기기 <FiChevronUp size={30} />
           </button>
         </div>
       )}
