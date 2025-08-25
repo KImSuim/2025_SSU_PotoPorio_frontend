@@ -6,8 +6,8 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 type CommentListProps = {
   comments: Comment[];
-  onUpdate?: (id: number, content: string) => void;
-  onDelete?: (id: number) => void;
+  onUpdate: (id: number, content: string) => void;
+  onDelete: (id: number) => void;
 };
 
 export default function CommentList({ comments, onUpdate, onDelete }: CommentListProps) {
@@ -19,7 +19,12 @@ export default function CommentList({ comments, onUpdate, onDelete }: CommentLis
   return (
     <div className="max-w-5xl w-full mx-auto">
       {comments.slice(0, visibleCount).map((comment) => (
-        <CommentItem key={comment.id} comment={comment} onUpdate={onUpdate ?? (() => {})} onDelete={onDelete ?? (() => {})} />
+        <CommentItem
+          key={comment.id}
+          comment={comment}
+          onUpdate={onUpdate}
+          onDelete={onDelete}
+        />
       ))}
       {comments.length > 5 && visibleCount < comments.length && (
         <div className="flex justify-center mt-6">

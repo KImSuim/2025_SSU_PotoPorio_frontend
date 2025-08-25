@@ -36,7 +36,9 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
     <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-5xl w-full mx-auto">
       <div className="font-subtitle flex items-start gap-4 mb-2">
         <input
-          className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-1/2 text-xl font-semibold ${nickname.trim().length > 1 ? "text-black" : "text-gray-400"}`}
+          className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-1/2 text-xl font-semibold focus:outline-none focus:border-[#33974D] transition-all ${
+            nickname.trim().length > 1 ? "text-black" : "text-gray-400"
+          }`}
           placeholder="닉네임"
           value={nickname}
           onChange={(e) => {
@@ -50,7 +52,9 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
         />
         <div className="relative w-1/2">
           <input
-            className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-full text-xl font-semibold text-black pr-10 ${password.trim().length >= 4 ? "text-black" : "text-gray-400"}`}
+            className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-full text-xl font-semibold text-black pr-10 focus:outline-none focus:border-[#33974D] transition-all ${
+              password.trim().length >= 4 ? "text-black" : "text-gray-400"
+            }`}
             placeholder="비밀번호 (숫자 4자리)"
             type={showPassword ? "text" : "password"}
             value={password}
@@ -66,7 +70,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
             }}
           />
           <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" onClick={() => setShowPassword((v) => !v)} tabIndex={-1}>
-            {showPassword ? <FiEye size={22} /> : <FiEyeOff size={22} />}
+            {showPassword ? <FiEye size={22} color="#33974D" /> : <FiEyeOff size={22} />}
           </button>
         </div>
 
@@ -82,19 +86,14 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
         </button>
       </div>
       <hr className="my-4 border-1 border-black" />
-      <div className="relative">
+      <div className="relative ">
         <textarea
-          className={`bg-white font-subtitle border-2 border-gray-400 p-4 rounded-md w-full text-xl resize-none ${content.trim().length >= 10 ? "text-black" : "text-gray-400"}`}
-          placeholder="10-100자로 응원의 댓글 작성해주세요~!"
           value={content}
-          onChange={(e) => {
-            const val = e.target.value;
-            if (val.length > 100) {
-              alert("100글자까지만 입력할 수 있습니다!");
-              return;
-            }
-            setContent(val);
-          }}
+          onChange={(e) => setContent(e.target.value)}
+          className={`bg-white font-subtitle border-2 border-gray-400 p-4 rounded-md w-full text-xl resize-none focus:outline-none focus:border-[#33974D] transition-all ${
+            content.trim().length >= 10 ? "text-black" : "text-gray-400"
+          }`}
+          placeholder="10-100자로 응원의 댓글 작성해주세요~!"
           rows={3}
         />
         <span className="absolute font-subtitle right-4 bottom-5 text-sm text-gray-500">{content.length} / 100</span>

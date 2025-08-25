@@ -13,10 +13,23 @@ export default function Guestbook() {
     setComments((prev) => [comment, ...prev]);
   };
 
+  // 댓글 수정 함수 추가
+  const handleUpdate = (id: number, content: string) => {
+    setComments(prev =>
+      prev.map(comment =>
+        comment.id === id ? { ...comment, content } : comment
+      )
+    );
+  };
+
+  // 댓글 삭제 함수 추가
+  const handleDelete = (id: number) => {
+    setComments(prev => prev.filter(comment => comment.id !== id));
+  };
+
   // CommentForm의 하단이 화면 하단에 오도록 스크롤
   const handleScrollToForm = () => {
     if (formRef.current) {
-      // CommentForm의 하단 위치 계산
       const formRect = formRef.current.getBoundingClientRect();
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -32,9 +45,12 @@ export default function Guestbook() {
         응원의 한마디를 남겨주세요 Click!!
       </button>
 
-      <CommentList comments={comments} />
+      <CommentList
+        comments={comments}
+        onUpdate={handleUpdate}
+        onDelete={handleDelete}
+      />
 
-      {/* CommentForm을 감싸는 div에 ref 추가 */}
       <div ref={formRef}>
         <CommentForm onSubmit={handleAddComment} />
       </div>

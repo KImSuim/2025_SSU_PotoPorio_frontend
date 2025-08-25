@@ -37,10 +37,15 @@ export default function ReplyForm({ parent, onFinish }: ReplyFormProps) {
   };
 
   return (
-    <div className="mt-8 bg-[#E5E1DC] p-5 rounded flex flex-col gap-3">
+    <div className="mt-8 bg-[#d4d4d4] p-5 rounded flex flex-col gap-3">
       <div className="flex flex-row justify-between px-2">
         <div className="flex flex-row gap-2">
-          <input className="bg-white font-subtitle border-2 border-gray-400 p-2 rounded-md text-lg font-semibold" placeholder="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} />
+          <input
+            className="bg-white font-subtitle border-2 border-gray-400 p-2 rounded-md text-lg font-semibold focus:outline-none focus:border-[#33974D] transition-all"
+            placeholder="닉네임"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          />
           <input
             type="password"
             placeholder="비밀번호 (4자리)"
@@ -50,7 +55,7 @@ export default function ReplyForm({ parent, onFinish }: ReplyFormProps) {
               if (/^\d{0,4}$/.test(val)) setPassword(val);
             }}
             maxLength={4}
-            className="bg-white font-subtitle border-2 border-gray-400 p-2 rounded-md text-lg font-semibold"
+            className="bg-white font-subtitle border-2 border-gray-400 p-2 rounded-md text-lg font-semibold focus:outline-none focus:border-[#33974D] transition-all"
           />
         </div>
         <button onClick={handleSubmit} className="font-subtitle bg-[#ABD9B7] text-white text-xl px-6 rounded-lg font-semibold">
@@ -64,7 +69,7 @@ export default function ReplyForm({ parent, onFinish }: ReplyFormProps) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="100자 이내로 응원의 댓글 작성해주세요~!"
-        className="mx-2 bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md text-lg font-semibold"
+        className="mx-2 bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md text-lg font-semibold    focus:outline-none focus:border-[#33974D] transition-all"
         // className="font-subtitle p-2 text-base rounded-md w-full border-2 border-gray-400 resize-none"
         rows={2}
         maxLength={100}
