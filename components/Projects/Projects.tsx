@@ -139,8 +139,6 @@ export default function Projects() {
             ))} */}
             {filteredProjects.map((project) => (
               <div key={project.id} className="bg-[#102315] rounded-lg p-4 max-w-11/12 relative group">
-                {/* VIEW 버튼을 카드 맨 위에 배치 */}
-
                 <h3 className="text-[28px] font-bold mb-3">{project.title}</h3>
                 <span className="text-base bg-white/20 text-white py-1 px-4 rounded-full ">{project.type}</span>
                 <img src={project.imageUrl} alt={project.title} className="w-3xl rounded-lg my-4" />
@@ -156,12 +154,10 @@ export default function Projects() {
                     setSelectedProject(project);
                     setShowModal(true);
                   }}
-                  className="w-full bg-[#3B3B1F] text-[#FEC901] font-bold py-2 rounded-lg mb-4 z-20 relative"
-                  // z-20, relative로 오버레이 위에 항상 보이게!
+                  className="w-full bg-white/20 text-[#102315] font-bold py-2 rounded-lg mb-4 z-20 relative transition-colors group-hover:bg-[#3B3B1F] group-hover:text-[#FEC901]"
                 >
                   VIEW
                 </button>
-                {/* 오버레이 info: 호버 시만 나타나고, VIEW 버튼은 항상 위에 보임 */}
                 <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 rounded-lg">
                   <div className="text-[#FEC901] text-lg px-8 py-6 text-center font-subtitle break-words">{project.info}</div>
                 </div>
@@ -173,6 +169,7 @@ export default function Projects() {
           {showModal && selectedProject && (
             <motion.div
               className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 backdrop-blur-sm"
+              style={{ paddingTop: "50px" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -187,16 +184,16 @@ export default function Projects() {
                 transition={{ duration: 0.3 }}
                 style={{
                   // pointerEvents: "auto",
-                  boxShadow: "rgba(255, 255, 255, 0.5) 1px -1px 25px 0px",
+                  boxShadow: "rgba(255, 255, 255, 0.5) 1px -1px 20px 0px",
                 }}
               >
-                <button onClick={() => setShowModal(false)} className="font-bold  text-white hover:text-[#FCF8F2] flex w-full justify-between items-end">
+                <button onClick={() => setShowModal(false)} className="font-bold text-white hover:text-[#FCF8F2] flex w-full justify-between items-center mt-2 mb-1">
                   <div></div>
-                  <div></div>
+                  <h3 className="text-4xl font-bold mb-2 ">{selectedProject.title}</h3>
                   <HiMiniXMark />
                 </button>
-                <h3 className="text-4xl font-bold mb-2 ">{selectedProject.title}</h3>
-                <span className="text-lg bg-[#FCF8F2] text-[#0D1B11] py-1 px-7 mb-2 rounded-full">{selectedProject.type}</span>
+                {/* <h3 className="text-3xl font-bold mb-2 ">{selectedProject.title}</h3> */}
+                <span className="text-base bg-[#FCF8F2] text-[#0D1B11] py-1 px-6 mb-3 rounded-full">{selectedProject.type}</span>
 
                 {/* ✅ 슬라이드쇼 삽입 */}
                 {selectedProject.images && selectedProject.images.length > 0 && <Slideshow images={selectedProject.images} />}
@@ -207,7 +204,7 @@ export default function Projects() {
                     href={selectedProject.githubUrl} // ✅ 실제 GitHub 링크로 수정
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#3B3B1F] text-[#FEC901] text-lg px-5 py-3 rounded-2xl text-center"
+                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901]"
                   >
                     VISIT GitHub
                   </a>
@@ -216,7 +213,7 @@ export default function Projects() {
                     href={selectedProject.siteUrl} // ✅ 실제 GitHub 링크로 수정
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#3B3B1F] text-[#FEC901] text-lg px-5 py-3 rounded-2xl text-center"
+                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901]"
                   >
                     VISIT SITE
                   </a>
