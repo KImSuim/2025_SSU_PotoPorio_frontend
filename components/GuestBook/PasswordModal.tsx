@@ -32,10 +32,10 @@ export default function PasswordModal({ onConfirm, onClose, children }: Props) {
         />
         <div className="mb-6">{children}</div>
         <div className="flex justify-end gap-3">
-          <button onClick={onClose} className="bg-[#ABD9B7] text-white px-5 py-2.5 rounded-lg font-semibold text-xl hover:bg-[#33974D] transition-colors">
+          <button onClick={onClose} className="bg-[#ABD9B7] text-white px-5 py-2.5 rounded-lg font-semibold text-xl hover:bg-[#33974D] transition-colors duration-300">
             취소
           </button>
-          <button onClick={handleConfirm} className="bg-[#33974D] text-white px-5 py-2.5 rounded-lg font-semibold text-xl hover:bg-[#267a39] transition-colors">
+          <button onClick={handleConfirm} className="bg-[#64c17c] text-white px-5 py-2.5 rounded-lg font-semibold text-xl hover:bg-[#33974D] transition-colors duration-300">
             확인
           </button>
         </div>

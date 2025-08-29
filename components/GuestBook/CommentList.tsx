@@ -19,23 +19,18 @@ export default function CommentList({ comments, onUpdate, onDelete }: CommentLis
   return (
     <div className="max-w-5xl w-full mx-auto">
       {comments.slice(0, visibleCount).map((comment) => (
-        <CommentItem
-          key={comment.id}
-          comment={comment}
-          onUpdate={onUpdate}
-          onDelete={onDelete}
-        />
+        <CommentItem key={comment.id} comment={comment} onUpdate={onUpdate} onDelete={onDelete} />
       ))}
       {comments.length > 5 && visibleCount < comments.length && (
         <div className="flex justify-center mt-6">
-          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold" onClick={handleShowMore}>
+          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold transition duration-200 hover:text-white hover:drop-shadow-[0_0_10px_white]" onClick={handleShowMore}>
             더보기 <FiChevronDown size={30} />
           </button>
         </div>
       )}
       {comments.length > 5 && visibleCount >= comments.length && (
         <div className="flex justify-center mt-6">
-          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold" onClick={handleHide}>
+          <button className="font-subtitle text-white mt-4 flex items-center gap-1 font-bold transition duration-200 hover:text-white hover:drop-shadow-[0_0_10px_white]" onClick={handleHide}>
             숨기기 <FiChevronUp size={30} />
           </button>
         </div>

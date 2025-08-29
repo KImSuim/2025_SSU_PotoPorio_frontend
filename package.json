@@ -12,6 +12,7 @@
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.48",
     "autoprefixer": "^10.4.21",
+    "firebase": "^12.1.0",
     "framer-motion": "^12.9.2",
     "fullpage.js": "^4.0.35",
     "gsap": "^3.13.0",

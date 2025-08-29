@@ -15,16 +15,12 @@ export default function Guestbook() {
 
   // 댓글 수정 함수 추가
   const handleUpdate = (id: number, content: string) => {
-    setComments(prev =>
-      prev.map(comment =>
-        comment.id === id ? { ...comment, content } : comment
-      )
-    );
+    setComments((prev) => prev.map((comment) => (comment.id === id ? { ...comment, content } : comment)));
   };
 
   // 댓글 삭제 함수 추가
   const handleDelete = (id: number) => {
-    setComments(prev => prev.filter(comment => comment.id !== id));
+    setComments((prev) => prev.filter((comment) => comment.id !== id));
   };
 
   // CommentForm의 하단이 화면 하단에 오도록 스크롤
@@ -45,11 +41,7 @@ export default function Guestbook() {
         응원의 한마디를 남겨주세요 Click!!
       </button>
 
-      <CommentList
-        comments={comments}
-        onUpdate={handleUpdate}
-        onDelete={handleDelete}
-      />
+      <CommentList comments={comments} onUpdate={handleUpdate} onDelete={handleDelete} />
 
       <div ref={formRef}>
         <CommentForm onSubmit={handleAddComment} />

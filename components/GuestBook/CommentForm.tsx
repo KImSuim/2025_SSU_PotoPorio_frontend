@@ -10,11 +10,23 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
   const [content, setContent] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!content.trim()) return;
+  const handleSubmit = (e?: React.FormEvent | React.KeyboardEvent | React.MouseEvent) => {
+    e?.preventDefault();
 
-    const newComment = {
+    if (nickname.trim().length < 2) {
+      alert("닉네임을 2글자 이상 입력해주세요!");
+      return;
+    }
+    if (!/^\d{4}$/.test(password)) {
+      alert("비밀번호는 숫자 4자리로 입력해주세요!");
+      return;
+    }
+    if (content.trim().length < 1) {
+      alert("댓글을 작성해주세요!");
+      return;
+    }
+
+    const newComment: Comment = {
       id: Date.now(),
       nickname,
       password,
@@ -30,11 +42,12 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
     setContent("");
   };
 
-  const isActive = nickname.trim().length > 1 && /^\d{4}$/.test(password) && content.trim().length > 10 && password.trim().length === 4;
+  const isActive = nickname.trim().length > 1 && /^\d{4}$/.test(password) && content.trim().length >= 1 && password.trim().length === 4;
 
   return (
     <form onSubmit={handleSubmit} className="bg-[#FCF8F2] text-[#9D9D9D] p-10 rounded-2xl shadow mt-4 max-w-5xl w-full mx-auto">
       <div className="font-subtitle flex items-start gap-4 mb-2">
+        {/* 닉네임 입력 */}
         <input
           className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-1/2 text-xl font-semibold focus:outline-none focus:border-[#33974D] transition-all ${
             nickname.trim().length > 1 ? "text-black" : "text-gray-400"
@@ -50,6 +63,8 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
             setNickname(val);
           }}
         />
+
+        {/* 비밀번호 입력 */}
         <div className="relative w-1/2">
           <input
             className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-full text-xl font-semibold text-black pr-10 focus:outline-none focus:border-[#33974D] transition-all ${
@@ -74,6 +89,7 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
           </button>
         </div>
 
+        {/* 등록 버튼 */}
         <button
           type="submit"
           disabled={!isActive}
@@ -85,16 +101,25 @@ export default function CommentForm({ onSubmit }: { onSubmit?: (comment: Comment
           등록
         </button>
       </div>
+
       <hr className="my-4 border-1 border-black" />
+
+      {/* 댓글 입력 */}
       <div className="relative ">
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className={`bg-white font-subtitle border-2 border-gray-400 p-4 rounded-md w-full text-xl resize-none focus:outline-none focus:border-[#33974D] transition-all ${
-            content.trim().length >= 10 ? "text-black" : "text-gray-400"
+            content.trim().length >= 1 ? "text-black" : "text-gray-400"
           }`}
-          placeholder="10-100자로 응원의 댓글 작성해주세요~!"
+          placeholder="100자로 응원의 댓글 작성해주세요~!"
           rows={3}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault(); // 줄바꿈/스크롤 막기
+              handleSubmit(e);
+            }
+          }}
         />
         <span className="absolute font-subtitle right-4 bottom-5 text-sm text-gray-500">{content.length} / 100</span>
       </div>
