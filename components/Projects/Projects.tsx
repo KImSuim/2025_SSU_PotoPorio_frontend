@@ -154,7 +154,7 @@ export default function Projects() {
                     setSelectedProject(project);
                     setShowModal(true);
                   }}
-                  className="w-full bg-white/20 text-[#102315] font-bold py-2 rounded-lg mb-4 z-20 relative transition-colors group-hover:bg-[#3B3B1F] group-hover:text-[#FEC901]"
+                  className="w-full bg-white/20 text-[#102315] font-bold py-2 rounded-lg mb-4 z-20 relative transition-colors group-hover:bg-[#3B3B1F] group-hover:text-[#FEC901] duration-400"
                 >
                   VIEW
                 </button>
@@ -204,7 +204,7 @@ export default function Projects() {
                     href={selectedProject.githubUrl} // ✅ 실제 GitHub 링크로 수정
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901]"
+                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
                   >
                     VISIT GitHub
                   </a>
@@ -213,7 +213,7 @@ export default function Projects() {
                     href={selectedProject.siteUrl} // ✅ 실제 GitHub 링크로 수정
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901]"
+                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
                   >
                     VISIT SITE
                   </a>
