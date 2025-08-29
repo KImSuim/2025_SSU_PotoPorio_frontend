@@ -190,7 +190,10 @@ export default function Projects() {
                 <button onClick={() => setShowModal(false)} className="font-bold text-white hover:text-[#FCF8F2] flex w-full justify-between items-center mt-2 mb-1">
                   <div></div>
                   <h3 className="text-4xl font-bold mb-2 ">{selectedProject.title}</h3>
-                  <HiMiniXMark />
+                  <HiMiniXMark
+                    size={25} // 아이콘 크기 키우기
+                    className="hover:drop-shadow-[0_0_5px_white] transition-all duration-200"
+                  />
                 </button>
                 {/* <h3 className="text-3xl font-bold mb-2 ">{selectedProject.title}</h3> */}
                 <span className="text-base bg-[#FCF8F2] text-[#0D1B11] py-1 px-6 mb-3 rounded-full">{selectedProject.type}</span>
