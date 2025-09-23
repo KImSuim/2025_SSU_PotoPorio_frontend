@@ -1,13 +1,24 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import type { Comment } from "../../types/Comment";
+import { fireStore } from "../../firebase/firebase";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export default function Guestbook() {
   const [comments, setComments] = useState<Comment[]>([]);
   const formRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      const q = query(collection(fireStore, "comments"), orderBy("id", "desc"));
+      const snapshot = await getDocs(q);
+      setComments(snapshot.docs.map((doc) => doc.data() as Comment));
+    };
+    fetchComments();
+  }, []);
 
   const handleAddComment = (comment: Comment) => {
     setComments((prev) => [comment, ...prev]);
@@ -37,14 +48,13 @@ export default function Guestbook() {
   return (
     <div className="text-[#FCF8F2] text-2xl z-20 relative px-[200px] pt-[80px] pb-[200px] bg-[#2E5D3A] flex flex-col gap-[20px] mx-auto">
       <div className="text-[80px] text-center">Guest book</div>
-      <button onClick={handleScrollToForm} className="text-yellow-300 text-3xl mb-4">
+      <button onClick={handleScrollToForm} className="mb-4 text-3xl text-yellow-300">
         응원의 한마디를 남겨주세요 Click!!
       </button>
 
       <CommentList comments={comments} onUpdate={handleUpdate} onDelete={handleDelete} />
-
       <div ref={formRef}>
-        <CommentForm onSubmit={handleAddComment} />
+        <CommentForm onAdd={handleAddComment} />
       </div>
     </div>
   );

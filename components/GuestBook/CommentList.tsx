@@ -4,20 +4,14 @@ import CommentItem from "./CommentItem";
 import type { Comment } from "../../types/Comment";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-type CommentListProps = {
-  comments: Comment[];
-  onUpdate: (id: number, content: string) => void;
-  onDelete: (id: number) => void;
-};
-
-export default function CommentList({ comments, onUpdate, onDelete }: CommentListProps) {
+export default function CommentList({ comments, onUpdate, onDelete }: { comments: Comment[]; onUpdate: (id: number, content: string) => void; onDelete: (id: number) => void }) {
   const [visibleCount, setVisibleCount] = useState(5);
 
   const handleShowMore = () => setVisibleCount((c) => Math.min(c + 5, comments.length));
   const handleHide = () => setVisibleCount(5);
 
   return (
-    <div className="max-w-5xl w-full mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       {comments.slice(0, visibleCount).map((comment) => (
         <CommentItem key={comment.id} comment={comment} onUpdate={onUpdate} onDelete={onDelete} />
       ))}

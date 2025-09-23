@@ -4,7 +4,7 @@ export type Comment = {
   password: string;
   content: string;
   createdAt: string;
-  replies: Comment[];
+  // replies: Comment[];
   likes: number;
-  icon?: string;
+  // icon?: string;
 };
