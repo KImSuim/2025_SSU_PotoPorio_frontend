@@ -44,8 +44,8 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
     }
     e?.preventDefault();
 
-    if (nickname.trim().length < 2) {
-      alert("닉네임을 2글자 이상 입력해주세요!");
+    if (nickname.trim().length < 1) {
+      alert("닉네임을 1글자 이상 입력해주세요!");
       return;
     }
     if (!/^\d{4}$/.test(password)) {
@@ -104,8 +104,8 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
           value={nickname}
           onChange={(e) => {
             const val = e.target.value;
-            if (val.length > 10) {
-              alert("10글자까지만 입력할 수 있습니다!");
+            if (val.length > 5) {
+              alert("5글자까지만 입력할 수 있습니다!");
               return;
             }
             setNickname(val);
