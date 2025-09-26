@@ -77,8 +77,8 @@ function ProjectCard({ project, onView }: { project: Project; onView: () => void
       if (cardRef.current) {
         const width = cardRef.current.offsetWidth;
         // 300px~450px 사이에서 18~28px로 폰트 크기 조절
-        const sizeH3 = Math.max(18, Math.min(28, width / 15));
-        const sizeSpan = Math.max(15, Math.min(20, width / 15));
+        const sizeH3 = Math.max(18, Math.min(23, width / 15));
+        const sizeSpan = Math.max(15, Math.min(15, width / 15));
         setFontSizeH3(sizeH3);
         setFontSizeSpan(sizeSpan);
       }
@@ -91,7 +91,7 @@ function ProjectCard({ project, onView }: { project: Project; onView: () => void
 
   return (
     <div ref={cardRef} className="bg-[#102315] rounded-lg p-4 w-full max-w-[95vw] sm:max-w-[400px] md:max-w-[400px] lg:max-w-[450px] relative group">
-      <h3 className="font-bold mb-4" style={{ fontSize: fontSizeH3 }}>
+      <h3 className="font-bold mb-2" style={{ fontSize: fontSizeH3 }}>
         {project.title}
       </h3>
       <span className="text-base bg-white/20 text-white py-[3px] px-4 rounded-full" style={{ fontSize: fontSizeSpan }}>
@@ -100,14 +100,14 @@ function ProjectCard({ project, onView }: { project: Project; onView: () => void
       <img src={project.imageUrl} alt={project.title} className="w-3xl rounded-lg my-5" />
       <div className="flex overflow-x-auto gap-2 scrollbar-hide mb-4">
         {project.tags.map((tag, i) => (
-          <span key={i} className="whitespace-nowrap bg-white/10 text-base px-4 py-1 rounded-full">
+          <span key={i} className="whitespace-nowrap bg-white/10 text-[13px] px-4 py-1 rounded-full">
             {tag}
           </span>
         ))}
       </div>
       <button
         onClick={onView}
-        className="w-full bg-white/20 text-[#102315] font-bold py-2 rounded-lg mb-4 z-20 relative transition-colors group-hover:bg-[#3B3B1F] group-hover:text-[#FEC901] duration-400"
+        className="text-[23px] tracking-wider w-full font-bold py-1.5 rounded-lg mb-4 z-20 relative transition-colors bg-[#3B3B1F] text-[#FEC901] lg:bg-[#575749] lg:text-[#0D1B11] group-hover:bg-[#3B3B1F] group-hover:text-[#FEC901] duration-400"
       >
         VIEW
       </button>
@@ -140,15 +140,15 @@ export default function Projects() {
 
   return (
     <>
-      <div className="text-[#FCF8F2] text-2xl z-20 relative pt-[80px] sm:px-10 md:px-[100px] lg:px-[200px] pb-[150px] lg:pb-[150px] bg-[#16331F] flex flex-col gap-[15px]">
-        <div className="text-[65px] sm:text-[65px] md:text-[65px] lg:text-[80px] text-center">Projects</div>
-        <section className=" py-4  text-white">
-          <div className="flex justify-center gap-6 mb-10">
+      <div className="text-[#FCF8F2] text-2xl z-20 relative px-8 sm:px-10 md:px-[100px] pt-[40px] sm:pt-[80px] lg:px-[200px] pb-[90px] lg:pb-[150px] bg-[#16331F] flex flex-col gap-[20px]">
+        <div className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px] text-center">Projects</div>
+        <section className=" py-4 text-white">
+          <div className="flex justify-center gap-4 lg:gap-6 mb-10">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full font-semibold transition-colors duration-200 text-lg bg-white/40 ${
+                className={`px-5 sm:px-6 py-2 rounded-full font-semibold transition-colors duration-200 text-[15px] sm:text-lg  leading-4 bg-white/40 ${
                   activeCategory === category ? "text-[#FEC901]" : "text-[#16331F] hover:text-[#3C6C4F]"
                 }`}
               >
@@ -173,7 +173,7 @@ export default function Projects() {
           {/* 모달 애니메이션 */}
           {showModal && selectedProject && (
             <motion.div
-              className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 backdrop-blur-sm"
+              className="px-10 fixed inset-0 bg-black/50 flex justify-center items-center z-50 backdrop-blur-sm"
               style={{ paddingTop: "50px" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -192,18 +192,18 @@ export default function Projects() {
               >
                 <button onClick={() => setShowModal(false)} className="font-bold text-white hover:text-[#FCF8F2] flex w-full justify-between items-center mt-2 mb-1">
                   <div></div>
-                  <h3 className="text-4xl font-bold mb-2 ">{selectedProject.title}</h3>
-                  <HiMiniXMark size={25} className="hover:drop-shadow-[0_0_5px_white] transition-all duration-200" />
+                  <h3 className="text-xl md:text-3xl lg:text-4xl font-bold lg:mb-2 ">{selectedProject.title}</h3>
+                  <HiMiniXMark size={25} className="lg:hover:drop-shadow-[0_0_5px_white] transition-all duration-200" />
                 </button>
-                <span className="text-base bg-[#FCF8F2] text-[#0D1B11] py-1 px-6 mb-3 rounded-full">{selectedProject.type}</span>
+                <span className="text-sm md:text-base md:mb-1 bg-[#FCF8F285] text-[#0D1B11] py-1 px-5 md-1 lg:mb-2 rounded-full">{selectedProject.type}</span>
                 {selectedProject.images && selectedProject.images.length > 0 && <Slideshow images={selectedProject.images} />}
-                <div className="font-subtitle w-2xl text-lg h-[100px] mt-3 overflow-hidden break-words">{selectedProject.info}</div>
+                <div className="font-subtitle md:w-2xl text-sm md:text-base lg:text-lg h-[100px] mt-3 overflow-hidden break-words">{selectedProject.info}</div>
                 <div className="flex gap-5">
                   <a
                     href={selectedProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
+                    className="lg:mt-4 inline-block text-xs md:text-lg px-3 md:px-9 py-2 md:py-3 rounded-full text-center bg-[#3B3B1F] text-[#FEC901] lg:bg-[#575749] lg:text-[#0D1B11] hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
                   >
                     VISIT GitHub
                   </a>
@@ -211,7 +211,7 @@ export default function Projects() {
                     href={selectedProject.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-[#575749] text-[#0D1B11] text-lg px-9 py-3 rounded-full text-center hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
+                    className="lg:mt-4 inline-block text-xs md:text-lg px-3 md:px-9 py-2 md:py-3 rounded-full text-center bg-[#3B3B1F] text-[#FEC901] lg:bg-[#575749] lg:text-[#0D1B11] hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
                   >
                     VISIT SITE
                   </a>

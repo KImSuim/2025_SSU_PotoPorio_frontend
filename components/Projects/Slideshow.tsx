@@ -44,7 +44,7 @@ export const Slideshow = ({ images }: { images: Image[] }) => {
 
   return (
     <div className="w-full h-auto flex justify-center items-center relative">
-      <div className="relative w-[1200px] h-[400px] overflow-hidden rounded-lg">
+      <div className="relative w-full h-[200px] sm:h-[450px] lg:h-[400px] overflow-hidden rounded-lg">
         <AnimatePresence mode="wait">
           <motion.img
             key={index}
