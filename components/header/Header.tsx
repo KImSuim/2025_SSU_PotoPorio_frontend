@@ -53,22 +53,26 @@ export default function Header() {
   return (
     <>
       {/* 음악 버튼 (lg 이상) */}
-      <div className={isScrolledPast ? "fixed top-0 right-[230px] z-40 flex items-center gap-3 h-[90px] hidden lg:block" : "fixed top-0 right-4 z-40 flex items-center gap-3 h-[80px] hidden"}>
+      <div
+        className={
+          isScrolledPast ? "fixed top-0 right-[55px] md:right-[100px] lg:right-[230px] z-40 flex items-center gap-3 h-[70px] lg:block" : "fixed top-0 right-4 z-40 items-center gap-3 h-[80px] hidden"
+        }
+      >
         <YouTubeVisualizer shouldUnmute={shouldUnmute} />
       </div>
 
       {/* 상단 고정 헤더 */}
       {!isScrolledPast && (
-        <div className="fixed top-0 left-0 w-full h-[80px] flex justify-center items-center bg-[#2E5D3A] z-20">
-          <div className="relative z-10 text-[30px] font-bold text-white text-center">SSU PortFolio</div>
+        <div className="fixed top-0 left-0 w-full h-[70px] lg:h-[90px] flex justify-center items-center bg-[#2E5D3A] z-20">
+          <div className="relative z-10  text-[24px] lg:text-[30px] font-bold text-white text-center">SSU PortFolio</div>
         </div>
       )}
 
       {isScrolledPast && (
-        <motion.div className="fixed top-0 left-0 w-full h-[90px] flex items-center justify-between px-[24px] md:px-[40px] lg:px-[85px] bg-[#0D1B11] z-30" style={{ fontSize, opacity }}>
+        <motion.div className="fixed top-0 left-0 w-full h-[70px] lg:h-[90px] flex items-center justify-between px-[24px] md:px-[40px] lg:px-[85px] bg-[#0D1B11] z-30" style={{ fontSize, opacity }}>
           <div className="flex items-center gap-16 h-full">
             {/* 왼쪽: 로고 */}
-            <div className="py-6 text-[30px] font-bold text-[#ABD9B7] whitespace-nowrap">SSU PortFolio</div>
+            <div className="py-6 text-[24px] lg:text- font-bold text-[#ABD9B7] whitespace-nowrap">SSU PortFolio</div>
             {/* lg 이상: 기존 메뉴/뷰카운트 */}
             <div className="hidden lg:flex">
               <div className="flex gap-6 text-[#FCF8F2] text-base md:text-lg font-semibold items-center">
@@ -87,7 +91,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3 text-[#ABD9B7] font-bold text-base md:text-lg h-full">total view : {viewCount}</div>
           {/* lg 미만: 음악 + 햄버거 */}
           <div className="flex items-center gap-4 lg:hidden">
-            <YouTubeVisualizer shouldUnmute={shouldUnmute} />
+            {/* <YouTubeVisualizer shouldUnmute={shouldUnmute} /> */}
             <button className="focus:outline-none" onClick={() => setOpenMenu((v) => !v)} aria-label="메뉴 열기">
               {/* 햄버거 아이콘 */}
               <svg width="32" height="32" fill="#ABD9B7" viewBox="0 0 24 24">
@@ -97,67 +101,65 @@ export default function Header() {
               </svg>
             </button>
           </div>
-          {/* 드롭다운 메뉴 (모바일/태블릿) */}
-          {openMenu && (
-            <div className="fixed inset-0 z-50 flex lg:hidden">
-              {/* 왼쪽 반투명 배경 */}
-              <div className="flex-1 bg-black/85" onClick={() => setOpenMenu(false)}>
-                {/* 세로 점선 */}
-                <div className="absolute left-0 top-0 h-full flex items-start">
-                  <div className="border-l-3 border-[#FCF8F2] h-[37%] ml-17" />
-                  <div className="absolute left-17 top-90 h-full flex items-start">
-                    <div className="border-l-3 border-dashed border-[#fdefbb] h-[20%] " />
-                  </div>
-                </div>
-                <button className="absolute top-8 right-8 hover:drop-shadow-[0_0_5px_white]" onClick={() => setOpenMenu(false)} aria-label="메뉴 닫기">
-                  {/* X 아이콘 */}
-                  <svg width="32" height="32" fill="#fdefbb" viewBox="0 0 24 24">
-                    <line x1="6" y1="6" x2="18" y2="18" stroke="#fdefbb" strokeWidth="2" />
-                    <line x1="6" y1="18" x2="18" y2="6" stroke="#fdefbb" strokeWidth="2" />
-                  </svg>
-                </button>
-                <ul className="flex flex-col gap-6 pl-28 pt-32">
-                  <li>
-                    <Link
-                      to="about"
-                      smooth
-                      duration={500}
-                      offset={-80}
-                      className="hover:drop-shadow-[0_0_2px_white] text-white text-5xl font-bold font-serif hover:text-[#fdefbb] transition"
-                      onClick={() => setOpenMenu(false)}
-                    >
-                      About me
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="projects"
-                      smooth
-                      duration={500}
-                      offset={-80}
-                      className="hover:drop-shadow-[0_0_2px_white] text-white text-5xl font-bold font-serif hover:text-[#fdefbb] transition"
-                      onClick={() => setOpenMenu(false)}
-                    >
-                      Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="guestbook"
-                      smooth
-                      duration={500}
-                      offset={-80}
-                      className="hover:drop-shadow-[0_0_2px_white] text-white text-5xl font-bold font-serif hover:text-[#fdefbb] transition"
-                      onClick={() => setOpenMenu(false)}
-                    >
-                      Guest book
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
         </motion.div>
+      )}
+
+      {/* 드롭다운 메뉴 (모바일/태블릿) */}
+      {openMenu && (
+        <div className="fixed inset-0 z-50 flex lg:hidden ">
+          {/* 왼쪽 반투명 배경 */}
+          <div className="flex-1 bg-black/85 h-[65vh]" onClick={() => setOpenMenu(false)}>
+            {/* 세로 점선 */}
+            <div className="absolute left-0 top-0 h-screen flex items-start">
+              <div className="border-l-3 border-[#fdefbb] drop-shadow-[0_0_5px_white] h-[50%] ml-17" />
+            </div>
+            <button className="absolute top-8 right-9 drop-shadow-[0_0_5px_white]" onClick={() => setOpenMenu(false)} aria-label="메뉴 닫기">
+              {/* X 아이콘 */}
+              <svg width="32" height="32" fill="#fdefbb" viewBox="0 0 24 24">
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#fdefbb" strokeWidth="2" />
+                <line x1="6" y1="18" x2="18" y2="6" stroke="#fdefbb" strokeWidth="2" />
+              </svg>
+            </button>
+            <ul className="flex flex-col gap-6 pl-23 pt-25">
+              <li>
+                <Link
+                  to="about"
+                  smooth
+                  duration={500}
+                  offset={-60}
+                  className="hover:drop-shadow-[0_0_2px_white] text-white text-4xl font-bold font-serif hover:text-[#fdefbb] transition"
+                  onClick={() => setOpenMenu(false)}
+                >
+                  About me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="projects"
+                  smooth
+                  duration={500}
+                  offset={-45}
+                  className="hover:drop-shadow-[0_0_2px_white] text-white text-4xl font-bold font-serif hover:text-[#fdefbb] transition"
+                  onClick={() => setOpenMenu(false)}
+                >
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="guestbook"
+                  smooth
+                  duration={500}
+                  offset={-40}
+                  className="hover:drop-shadow-[0_0_2px_white] text-white text-4xl font-bold font-serif hover:text-[#fdefbb] transition"
+                  onClick={() => setOpenMenu(false)}
+                >
+                  Guest book
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       )}
     </>
   );
