@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Loader from "@/components/Loader/Loader";
-import MainScreen from "@/components/Loader/MainScreen";
+import MainScreen from "@/components/Intro/MainScreen";
 import AboutMe from "@/components/Intro/Aboutme";
 import Projects from "@/components/Projects/Projects";
 import GuestBook from "@/components/GuestBook/GuestBook";
