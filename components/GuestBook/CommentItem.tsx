@@ -75,37 +75,37 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
   return (
     <div
       className="
-      bg-[#fcf8f2e5] text-black p-5 sm:p-8 md:p-10 rounded-2xl shadow mt-8
+      bg-[#fcf8f2e5] text-black p-4 sm:p-8 md:p-10 rounded-2xl shadow mt-8
       w-full max-w-[450px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-6xl mx-auto
       "
     >
-      <div className="flex flex-row justify-between mx-1 sm:mx-3 items-center gap-2">
-        <div className="flex flex-row gap-3 sm:gap-10 items-center">
-          <span className="font-subtitle font-bold text-base sm:text-xl">{comment.nickname}</span>
-          <span className="font-subtitle font-light text-base sm:text-xl">{comment.createdAt}</span>
+      <div className="flex flex-row justify-between mx-1 sm:mx-3 items-center gap-1">
+        <div className="flex flex-row gap-2 lg:gap-3 sm:gap-10 items-center">
+          <span className="font-subtitle font-bold text-sm sm:text-xl">{comment.nickname}</span>
+          <span className="font-subtitle font-light text-xs sm:text-xl">{comment.createdAt}</span>
           {/* 하트 아이콘과 숫자 */}
           <button
             onClick={handleLike}
             className={`flex items-center gap-1 ${liked ? "text-red-500" : "text-[#8A8A8A] hover:text-[#FFA6A6] transition-colors duration-300 "} font-subtitle`}
             aria-label="좋아요"
           >
-            <FaHeart className="text-xl sm:text-2xl" />
-            <span className="font-bold text-lg sm:text-xl">{likes}</span>
+            <FaHeart className="text-base sm:text-xl lg:text-2xl" />
+            <span className="font-bold text-xs sm:text-lg lg:text-xl">{likes}</span>
           </button>
         </div>
-        <div className="font-subtitle flex gap-2 text-white text-base sm:text-xl">
-          <button onClick={() => setShowModal("edit")} className="bg-[#B0DAF4] px-4 sm:px-5 py-1 rounded-lg font-semibold hover:bg-[#56AFE6] transition-colors duration-300">
+        <div className="font-subtitle flex gap-2 text-white text-sm sm:text-xl">
+          <button onClick={() => setShowModal("edit")} className="bg-[#B0DAF4] px-3 sm:px-5 py-1 rounded-lg font-semibold hover:bg-[#56AFE6] transition-colors tracking-tighter duration-300">
             수정
           </button>
-          <button onClick={() => setShowModal("delete")} className="bg-[#FFA6A6] px-4 sm:px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B] transition-colors duration-300">
+          <button onClick={() => setShowModal("delete")} className="bg-[#FFA6A6] px-3 sm:px-5 py-1 rounded-lg font-semibold hover:bg-[#FF6B6B] transition-colors tracking-tighter duration-300">
             삭제
           </button>
         </div>
       </div>
 
-      <hr className="my-4 border-1 border-black" />
+      <hr className="my-2 lg:my-4 border-1 border-black" />
 
-      <div className="font-subtitle mx-1 sm:mx-3 font-light text-base sm:text-xl break-words">{comment.content}</div>
+      <div className="font-subtitle mx-1 sm:mx-3 font-light text-sm sm:text-base lg:text-xl break-words">{comment.content}</div>
 
       {showReply && <ReplyForm parent={comment} onFinish={() => setShowReply(false)} />}
 

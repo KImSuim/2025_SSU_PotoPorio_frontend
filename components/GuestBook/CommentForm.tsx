@@ -44,8 +44,8 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
     }
     e?.preventDefault();
 
-    if (nickname.trim().length < 1) {
-      alert("닉네임을 1글자 이상 입력해주세요!");
+    if (nickname.trim().length <= 5) {
+      alert("닉네임은 5자 이내로 작성해주세요!");
       return;
     }
     if (!/^\d{4}$/.test(password)) {
@@ -57,7 +57,7 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
       return;
     }
     if (content.trim().length > 100) {
-      alert("100자 이내로 작성해주세요!");
+      alert("댓글은 100자 이내로 작성해주세요!");
       return;
     }
 
@@ -87,18 +87,18 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
     }
   };
 
-  const isActive = nickname.trim().length > 1 && /^\d{4}$/.test(password) && content.trim().length >= 1 && password.trim().length === 4;
+  const isActive = nickname.trim().length >= 1 && /^\d{4}$/.test(password) && content.trim().length >= 1 && password.trim().length === 4;
 
   return (
     <form
       onSubmit={handleSubmit}
       className="bg-[#FCF8F2] text-[#9D9D9D] p-5 sm:p-8 md:p-10 rounded-2xl shadow mt-4w-full max-w-[450px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-5xl mx-auto box-border"
     >
-      <div className="flex items-start gap-4 mb-2 font-subtitle">
+      <div className="flex items-start gap-2 lg:gap-4 mb-2 font-subtitle">
         {/* 닉네임 입력 */}
         <input
-          className={`bg-white font-subtitle border-2 border-gray-400 p-2 sm:p-2.5 rounded-md w-1/3 sm:w-1/2 text-base sm:text-lg font-semibold focus:outline-none focus:border-[#33974D] transition-all ${
-            nickname.trim().length > 1 ? "text-black" : "text-gray-400"
+          className={`bg-white font-subtitle border-2 border-gray-400 p-2 sm:p-2.5 rounded-md w-1/3 sm:w-1/2 text-sm sm:text-lg font-semibold focus:outline-none focus:border-[#33974D] transition-all ${
+            nickname.trim().length > 0 ? "text-black" : "text-gray-400"
           }`}
           placeholder="닉네임"
           value={nickname}
@@ -115,7 +115,7 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
         {/* 비밀번호 입력 */}
         <div className="relative w-1/2">
           <input
-            className={`bg-white font-subtitle border-2 border-gray-400 p-2 sm:p-2.5 rounded-md w-full text-base sm:text-lg font-semibold text-black pr-10 focus:outline-none focus:border-[#33974D] transition-all ${
+            className={`bg-white font-subtitle border-2 border-gray-400 p-2 sm:p-2.5 rounded-md w-full text-sm sm:text-lg font-semibold text-black pr-10 focus:outline-none focus:border-[#33974D] transition-all ${
               password.trim().length >= 4 ? "text-black" : "text-gray-400"
             }`}
             placeholder="비밀번호 (숫자 4자리)"
@@ -142,16 +142,15 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
           ref={submitBtnRef}
           type="submit"
           disabled={!isActive}
-          className={`font-subtitle p-2 sm:p-3 rounded-lg font-semibold ml-auto text-lg sm:text-xl transition-colors duration-300
+          className={`font-subtitle py-2.5 sm:py-3 px-1 min-w-15 md:min-w-25 rounded-lg font-semibold ml-auto text-sm sm:text-xl transition-colors duration-300
         ${isActive ? "bg-[#33974D] text-white" : "bg-[#ABD9B7] text-white opacity-60 cursor-not-allowed"}
       `}
-          style={{ minWidth: 90 }}
         >
           등록
         </button>
       </div>
 
-      <hr className="my-4 border-black border-1" />
+      <hr className="my-3 lg:my-4 border-black border-1" />
 
       {/* 댓글 입력 */}
       <div className="relative ">
@@ -159,7 +158,7 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
           value={content}
           onChange={(e) => setContent(e.target.value)}
           tabIndex={0} // Tab 이동 가능
-          className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-full text-base sm:text-xl resize-none focus:outline-none focus:border-[#33974D] transition-all ${
+          className={`bg-white font-subtitle border-2 border-gray-400 p-3 rounded-md w-full text-sm sm:text-xl resize-none focus:outline-none focus:border-[#33974D] transition-all ${
             content.trim().length >= 1 ? "text-black" : "text-gray-400"
           }`}
           placeholder="100자로 응원의 댓글 작성해주세요~!"

@@ -46,9 +46,9 @@ export default function Guestbook() {
   };
 
   return (
-    <div className="text-[#FCF8F2] text-2xl z-20 relative pt-[80px] sm:px-10 md:px-[100px] lg:px-[200px] pb-[150px] lg:pb-[150px] bg-[#2E5D3A] flex flex-col gap-[20px] mx-auto">
-      <div className="text-[65px] sm:text-[65px] md:text-[65px] lg:text-[80px] text-center">Guest book</div>
-      <button onClick={handleScrollToForm} className="text-2xl text-yellow-300 font-subtitle sm:text-3xl">
+    <div className="text-[#FCF8F2] text-2xl z-20 relative px-8 sm:px-10 md:px-[100px] lg:px-[200px] pt-[40px] sm:pt-[80px] pb-[90px] lg:pb-[350px] bg-[#2E5D3A] flex flex-col gap-[10px] mx-auto">
+      <div className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px] text-center">Guest book</div>
+      <button onClick={handleScrollToForm} className="text-xl text-yellow-300 font-subtitle sm:text-3xl">
         응원의 한마디를 남겨주세요 Click!!
       </button>
 
