@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function TitleAnimation() {
   return (
     <motion.h1
-      className="text-[300px] font-bold text-[#16331F] whitespace-nowrap mb-10"
+      className="text-[50px] md:text-[100px] lg:text-[300px] font-bold text-[#16331F] whitespace-nowrap mb-10"
       initial={{ x: "15%", y: "-25%" }}
       animate={{ x: "-30%", y: "-25%" }}
       transition={{
