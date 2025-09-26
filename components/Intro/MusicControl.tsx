@@ -87,7 +87,7 @@ export default function YouTubeVisualizer({ shouldUnmute }: { shouldUnmute: bool
 
       {/* 시각화 막대 */}
       <button onClick={togglePlay} className={`px-4 py-2 rounded font-bold  text-white`}>
-        <div className="flex gap-2 h-20 items-end">
+        <div className="flex gap-2 h-10 md:h-20 items-end w-15 md:w-20">
           {bars.map((value, idx) => (
             <motion.div key={idx} animate={{ scaleY: value / 10 }} transition={{ duration: 0.2 }} className="w-2 bg-green-400 rounded" style={{ height: "100%" }} />
           ))}
