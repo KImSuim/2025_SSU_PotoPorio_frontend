@@ -2,8 +2,12 @@
 
 export default function Footer() {
   const handleCopy = () => {
-    navigator.clipboard.writeText("suim5748@gmail.com");
-    alert("이메일이 복사되었습니다!");
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      navigator.clipboard.writeText("suim5748@gmail.com");
+      alert("이메일이 복사되었습니다!");
+    } else {
+      alert("이 브라우저에서는 복사 기능을 지원하지 않습니다.\n직접 복사해 주세요.");
+    }
   };
   return (
     <>
