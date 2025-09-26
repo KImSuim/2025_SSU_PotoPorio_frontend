@@ -8,8 +8,8 @@ export default function GitName() {
         alt="GitHub Name"
         className="
           w-full
-          max-w-[400px]
-          sm:max-w-[400px]
+          max-w-[350px]
+          sm:max-w-[350px]
           md:max-w-[600px]
           lg:max-w-[777px]
           h-auto
