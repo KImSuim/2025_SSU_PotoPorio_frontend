@@ -5,6 +5,8 @@ import { FaHeart } from "react-icons/fa";
 import ReplyForm from "./ReplyForm";
 import PasswordModal from "./PasswordModal";
 import type { Comment } from "../../types/Comment";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { fireStore } from "../../firebase/firebase"; // firebase 설정에서 db를 import
 
 type CommentItemProps = {
   comment: Comment;
@@ -47,14 +49,25 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
     return true;
   };
 
-  const handleEdit = () => {
-    onUpdate(comment.id, editContent);
-    setShowModal(null);
+  const handleEdit = async () => {
+    try {
+      await updateDoc(doc(fireStore, "comments", String(comment.id)), { content: editContent });
+      onUpdate(comment.id, editContent);
+      setShowModal(null);
+    } catch (e) {
+      alert("수정 중 오류가 발생했습니다.");
+      console.error(e);
+    }
   };
 
-  const handleDelete = () => {
-    onDelete(comment.id);
-    setShowModal(null);
+  const handleDelete = async () => {
+    try {
+      await deleteDoc(doc(fireStore, "comments", String(comment.id)));
+      onDelete(comment.id);
+      setShowModal(null);
+    } catch (e) {
+      alert("삭제 중 오류가 발생했습니다.");
+    }
   };
 
   const handleLike = () => {

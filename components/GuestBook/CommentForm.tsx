@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import type { Comment } from "../../types/Comment";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { fireStore } from "../../firebase/firebase";
-import { collection, addDoc, query, getDocs, orderBy, limit } from "firebase/firestore";
+import { collection, setDoc, doc, query, getDocs, orderBy, limit } from "firebase/firestore";
 
 // // 댓글 타입 정의
 // type Comment = {
@@ -44,8 +44,8 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
     }
     e?.preventDefault();
 
-    if (nickname.trim().length <= 5) {
-      alert("닉네임은 5자 이내로 작성해주세요!");
+    if (nickname.trim().length < 1 || nickname.trim().length > 5) {
+      alert("닉네임은 1자 이상 5자 이내로 작성해주세요!");
       return;
     }
     if (!/^\d{4}$/.test(password)) {
@@ -74,8 +74,8 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
     };
 
     try {
-      await addDoc(collection(fireStore, "comments"), newComment);
-      // 등록 후 바로 화면에 반영
+      // 문서 id를 직접 지정 (여기서는 nextId를 문자열로 사용)
+      await setDoc(doc(fireStore, "comments", String(nextId)), newComment);
       if (onAdd) onAdd(newComment);
       alert("댓글이 성공적으로 저장되었습니다!");
       setNickname("");
@@ -92,7 +92,7 @@ export default function CommentForm({ onAdd }: { onAdd?: (comment: Comment) => v
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#FCF8F2] text-[#9D9D9D] p-5 sm:p-8 md:p-10 rounded-2xl shadow mt-4w-full max-w-[450px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-5xl mx-auto box-border"
+      className="bg-[#FCF8F2] text-[#9D9D9D] p-5 sm:p-8 md:p-10 rounded-2xl shadow mt-4w-full max-w-[450px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-5xl mx-auto box-border mt-8"
     >
       <div className="flex items-start gap-2 lg:gap-4 mb-2 font-subtitle">
         {/* 닉네임 입력 */}
