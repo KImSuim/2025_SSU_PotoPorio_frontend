@@ -71,8 +71,10 @@ export default function Header() {
       {isScrolledPast && (
         <motion.div className="fixed top-0 left-0 w-full h-[70px] lg:h-[90px] flex items-center justify-between px-[24px] md:px-[40px] lg:px-[85px] bg-[#0D1B11] z-30" style={{ fontSize, opacity }}>
           <div className="flex items-center gap-16 h-full">
-            {/* 왼쪽: 로고 */}
-            <div className="py-6 text-[24px] lg:text- font-bold text-[#ABD9B7] whitespace-nowrap">SSU PortFolio</div>
+            {/* 왼쪽: 로고 - 클릭 시 상단 이동 */}
+            <div className="py-6 text-[24px] lg:text-[30px] font-bold text-[#ABD9B7] whitespace-nowrap cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+              SSU PortFolio
+            </div>
             {/* lg 이상: 기존 메뉴/뷰카운트 */}
             <div className="hidden lg:flex">
               <div className="flex gap-6 text-[#FCF8F2] text-base md:text-lg font-semibold items-center">
