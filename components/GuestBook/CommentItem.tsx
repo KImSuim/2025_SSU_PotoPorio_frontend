@@ -70,18 +70,21 @@ export default function CommentItem({ comment, onUpdate, onDelete }: CommentItem
     }
   };
 
-  const handleLike = () => {
+  const handleLike = async () => {
     const likedArr = getLikedComments();
+    const commentRef = doc(fireStore, "comments", String(comment.id));
     if (liked) {
       // 좋아요 취소
       setLikes(likes - 1);
       setLiked(false);
       setLikedComments(likedArr.filter((id: number) => id !== comment.id));
+      await updateDoc(commentRef, { likes: likes - 1 });
     } else {
       // 좋아요 추가
       setLikes(likes + 1);
       setLiked(true);
       setLikedComments([...likedArr, comment.id]);
+      await updateDoc(commentRef, { likes: likes + 1 });
     }
   };
 
