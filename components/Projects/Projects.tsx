@@ -9,7 +9,7 @@ const projects = [
   {
     id: 1,
     title: "Spotify Clone Coding",
-    info: "Next.js와 TypeScript 학습 이후, 이를 직접 적용해보고자 Spotify 클론 코딩 프로젝트를 진행했습니다.",
+    info: "학원을 다니며 Next.js와 TypeScript를 기반으로 제작한 Spotify 클론 프로젝트입니다. 실제 서비스처럼 직관적인 UI/UX를 구현하고, Framer Motion을 활용한 애니메이션과 반응형 디자인으로 어떤 디바이스에서든 뛰어난 사용자 경험을 제공합니다.TypeScript의 타입 시스템과 컴포넌트 기반 설계를 통해 코드의 재사용성과 유지보수성을 높였습니다. 아티스트 검색, 앨범 조회 등 핵심 기능을 갖춘 이 프로젝트는 단순한 클론을 넘어, 사용자 경험과 코드 효율성까지 깊이 고민한 결과물입니다.",
     type: "Team Project",
     tags: ["Next.js", "TypeScript", "React", "Firebase", "Framer Motion"],
     imageUrl: "/Spotify1.png",
@@ -25,7 +25,6 @@ const projects = [
     tags: ["Html", "CSS", "JavaScript"],
     imageUrl: "/kokoa1.png",
     images: [{ src: "/kokoa1.png" }, { src: "/kokoa2.png" }],
-    siteUrl: "https://asom0160.github.io/pokemon_JS_TeamProject/",
     githubUrl: "https://github.com/KImSuim/kokoa-clone",
   },
   {
@@ -36,7 +35,6 @@ const projects = [
     tags: ["React", "MySql", "Java Spring"],
     imageUrl: "/vita1.png",
     images: [{ src: "/vita1.png" }, { src: "/vita2.png" }, { src: "/vita3.png" }, { src: "/vita4.png" }],
-    siteUrl: "https://team-spotify-zeta.vercel.app/",
     githubUrl: "https://github.com/BC-VITA",
   },
   {
@@ -44,11 +42,11 @@ const projects = [
     title: "Todolist",
     info: "Next.js와 TypeScript를 활용하여 간단한 투두리스트 웹 애플리케이션을 제작했습니다.",
     type: "Side Project",
-    tags: ["Next.js", "TypeScript", "React", "Firebase", "Framer Motion"],
-    imageUrl: "/todolist.png",
-    images: [{ src: "/todolist.png" }, { src: "/todolist2.png" }],
-    siteUrl: "https://asom0160.github.io/pokemon_JS_TeamProject/",
-    githubUrl: "https://github.com/asom0160/pokemon_JS_TeamProject?tab=readme-ov-files",
+    tags: ["TypeScript", "React", "Firebase", "Framer Motion", "Tailwind CSS", "Zustand"],
+    imageUrl: "/ToDo1.png",
+    images: [{ src: "/ToDo1.png" }],
+    siteUrl: "https://ts-todolist-theta.vercel.app/",
+    githubUrl: "https://github.com/KImSuim/ts_todolist",
   },
   {
     id: 5,
@@ -56,9 +54,8 @@ const projects = [
     info: "대학교 2학년 때 동기들과 같이 진행한 프로젝트로, 동물병원 찾기 등과 관련된 웹사이트를 제작했습니다.",
     type: "Team Project",
     tags: ["React", "MySql", "Java Spring"],
-    imageUrl: "/z_v.png",
-    images: [{ src: "/z_v.png" }, { src: "/z_v2.png" }, { src: "/z_v3.png" }, { src: "/z_v4.png" }],
-    siteUrl: "https://team-spotify-zeta.vercel.app/",
+    imageUrl: "/zv1.png",
+    images: [{ src: "/zv1.png" }, { src: "/zv2.png" }, { src: "/zv3.png" }, { src: "/zv4.png" }, { src: "/zv5.png" }],
     githubUrl: "https://github.com/WAT-Bast/z-v-project",
   },
 ];
@@ -71,7 +68,7 @@ type Project = {
   tags: string[];
   imageUrl?: string;
   images: { src: string }[];
-  siteUrl: string;
+  siteUrl?: string;
   githubUrl: string;
 };
 
@@ -208,7 +205,7 @@ export default function Projects() {
                 </button>
                 <span className="text-sm md:text-base md:mb-1 bg-[#FCF8F285] text-[#0D1B11] py-1 px-5 md-1 lg:mb-2 rounded-full">{selectedProject.type}</span>
                 {selectedProject.images && selectedProject.images.length > 0 && <Slideshow images={selectedProject.images} />}
-                <div className="font-subtitle md:w-2xl text-sm md:text-base lg:text-lg h-[100px] mt-3 overflow-hidden break-words">{selectedProject.info}</div>
+                <div className="font-subtitle md:w-2xl text-sm md:text-base lg:text-lg h-[100px] mt-3 overflow-y-auto break-words">{selectedProject.info}</div>
                 <div className="flex gap-5">
                   <a
                     href={selectedProject.githubUrl}
@@ -218,14 +215,18 @@ export default function Projects() {
                   >
                     VISIT GitHub
                   </a>
-                  <a
-                    href={selectedProject.siteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="lg:mt-4 inline-block text-xs md:text-lg px-3 md:px-9 py-2 md:py-3 rounded-full text-center bg-[#3B3B1F] text-[#FEC901] lg:bg-[#575749] lg:text-[#0D1B11] hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
-                  >
-                    VISIT SITE
-                  </a>
+
+                  {/* siteUrl이 있을 때만 VISIT SITE 버튼 렌더링 */}
+                  {selectedProject.siteUrl && (
+                    <a
+                      href={selectedProject.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="lg:mt-4 inline-block text-xs md:text-lg px-3 md:px-9 py-2 md:py-3 rounded-full text-center bg-[#3B3B1F] text-[#FEC901] lg:bg-[#575749] lg:text-[#0D1B11] hover:bg-[#3B3B1F] hover:text-[#FEC901] transition-colors duration-300"
+                    >
+                      VISIT SITE
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
