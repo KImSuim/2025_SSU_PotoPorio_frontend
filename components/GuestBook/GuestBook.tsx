@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import type { Comment } from "../../types/Comment";
@@ -47,15 +48,31 @@ export default function Guestbook() {
 
   return (
     <div className="text-[#FCF8F2] text-2xl z-20 relative px-8 sm:px-10 md:px-[100px] lg:px-[200px] pt-[40px] sm:pt-[80px] pb-[90px] lg:pb-[350px] bg-[#2E5D3A] flex flex-col gap-[10px] mx-auto">
-      <div className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px] text-center">Guest book</div>
-      <button onClick={handleScrollToForm} className="text-xl text-yellow-300 font-subtitle sm:text-3xl">
-        응원의 한마디를 남겨주세요 Click!!
-      </button>
+      {/* 제목 애니메이션 */}
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px] text-center">
+        Guest book
+      </motion.div>
 
-      <CommentList comments={comments} onUpdate={handleUpdate} onDelete={handleDelete} />
-      <div ref={formRef}>
+      {/* 설명 텍스트 애니메이션 */}
+      <motion.button
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        onClick={handleScrollToForm}
+        className="text-xl text-yellow-300 font-subtitle sm:text-3xl"
+      >
+        응원의 한마디를 남겨주세요 Click!!
+      </motion.button>
+
+      {/* 댓글 목록 애니메이션 */}
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+        <CommentList comments={comments} onUpdate={handleUpdate} onDelete={handleDelete} />
+      </motion.div>
+
+      {/* 댓글 폼 애니메이션 */}
+      <motion.div ref={formRef} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}>
         <CommentForm onAdd={handleAddComment} />
-      </div>
+      </motion.div>
     </div>
   );
 }
