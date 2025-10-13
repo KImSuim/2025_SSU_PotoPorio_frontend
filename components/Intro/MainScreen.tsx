@@ -18,21 +18,12 @@ export default function MainScreen() {
       }}
     >
       <div className="w-full h-full flex flex-col">
-        {/* 비디오 */}
         <div className="flex-1 min-h-0">
           <Video />
         </div>
-        {/* <div className="absolute inset-0 z-0 h-full">
-          <Video />
-        </div> */}
-
-        {/* Skills 텍스트 */}
         <div className="w-full z-10">
           <Skills />
         </div>
-        {/* <div className="absolute bottom-0 left-0 right-0 z-10">
-          <Skills />
-        </div> */}
       </div>
     </motion.div>
   );
