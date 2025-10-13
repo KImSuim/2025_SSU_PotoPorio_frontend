@@ -1,22 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useScrollDirection } from "../../hooks/useScrollDirection";
 
 export default function AboutMe() {
+  const scrollDirection = useScrollDirection();
+
   return (
     <>
       <div className="text-[#FCF8F2] text-2xl z-20 relative px-8 sm:px-10 md:px-[100px] lg:px-[200px] pt-[40px] sm:pt-[80px] pb-[90px] lg:pb-[350px] bg-[#2E5D3A] flex flex-col gap-[20px]">
         <div className="max-w-9xl text-left mx-auto ">
           {/* 제목 애니메이션 */}
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={scrollDirection === "down" ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            animate={scrollDirection === "down" ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: scrollDirection === "down" ? 0.8 : 0 }}
+            className="text-[48px] sm:text-[60px] md:text-[65px] lg:text-[80px]"
+          >
             About me
           </motion.div>
 
           {/* 인용구 애니메이션 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            whileInView={scrollDirection === "down" ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            animate={scrollDirection === "down" ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: scrollDirection === "down" ? 0.8 : 0,
+              delay: scrollDirection === "down" ? 0.2 : 0,
+            }}
             className="font-aboutme font-pretendard text-[25px] sm:text-[38px] md:text-[45px] lg:text-[55px] mt-[15px]"
           >
             "디자인과 사용자 경험을 연결하는 개발자"
@@ -25,8 +38,12 @@ export default function AboutMe() {
           {/* 본문 애니메이션 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            whileInView={scrollDirection === "down" ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            animate={scrollDirection === "down" ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: scrollDirection === "down" ? 0.8 : 0,
+              delay: scrollDirection === "down" ? 0.4 : 0,
+            }}
             className="font-subtitle font-pretendard text-[19px] sm:text-[28px] md:text-[35px] lg:text-[35px] font-bold flex flex-col gap-3 mt-[20px] leading-7 sm:leading-10.5 md:leading-13"
           >
             <div>저는 현재 컴퓨터공학 전공과 SEO·마케팅 경험을 바탕으로 웹 프론트엔드 개발자를 꿈꾸는 김수임 입니다.</div>
